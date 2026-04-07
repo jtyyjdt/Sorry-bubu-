@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I'm Sorry ❤️</title>
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  text-align: center;
+  color: white;
+}
+
+/* Glow */
+.glow {
+  font-size: 38px;
+  margin-top: 60px;
+  animation: glow 2s infinite alternate;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px white; }
+  to { text-shadow: 0 0 30px pink; }
+}
+
+/* Letter */
+.letter {
+  width: 85%;
+  max-width: 600px;
+  margin: 20px auto;
+  background: rgba(255,255,255,0.2);
+  padding: 20px;
+  border-radius: 20px;
+  backdrop-filter: blur(10px);
+  min-height: 140px;
+}
+
+/* Cards */
+.cards {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 20px;
+}
+.card {
+  background: rgba(255,255,255,0.2);
+  padding: 10px;
+  border-radius: 15px;
+  width: 100px;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: show 1s forwards;
+}
+.card:nth-child(1){animation-delay:1s;}
+.card:nth-child(2){animation-delay:2s;}
+.card:nth-child(3){animation-delay:3s;}
+
+@keyframes show {
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* Button */
+button {
+  margin-top: 20px;
+  padding: 12px 25px;
+  border-radius: 30px;
+  border: none;
+  background: white;
+  color: #ff4d6d;
+  cursor: pointer;
+}
+
+/* Floating Hearts */
+.heart {
+  position: absolute;
+  bottom: 0;
+  font-size: 20px;
+  animation: floatUp 5s linear infinite;
+}
+@keyframes floatUp {
+  to { transform: translateY(-100vh); }
+}
+
+/* Petals */
+.petal {
+  position: absolute;
+  top: -10px;
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  to { transform: translateY(100vh); }
+}
+</style>
+</head>
+
+<body>
+
+<h1 class="glow">I'm Sorry Bubu ❤️</h1>
+
+<div class="letter" id="text"></div>
+
+<div class="cards">
+  <div class="card">Your smile 😊</div>
+  <div class="card">Your care 💖</div>
+  <div class="card">Your cuteness 🥺</div>
+</div>
+
+<button onclick="forgive()">Tap if you forgive me 💕</button>
+
+<audio autoplay loop>
+  <source src="https://www2.cs.uic.edu/~i101/SoundFiles/StarWars60.wav">
+</audio>
+
+<script>
+const msg = `My Dearest Bubu,
+
+Mujhe realise hua ki maine mazaak me thoda zyada bol diya...
+aur shayad tujhe hurt hua.
+
+Par sach me, tu mere liye bohot important hai.
+Main tujhe doubt nahi karta, bas thoda stupid behave kar diya.
+
+Please gussa mat reh na...
+I really miss you 💔
+
+– Yours 💖`;
+
+let i=0;
+function type(){
+  if(i<msg.length){
+    document.getElementById("text").innerHTML += msg.charAt(i);
+    i++;
+    setTimeout(type,40);
+  }
+}
+type();
+
+function forgive(){
+  alert("Thank you Bubu 😭❤️");
+}
+
+/* Hearts */
+function heart(){
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),5000);
+}
+setInterval(heart,500);
+
+/* Petals */
+function petal(){
+  let p=document.createElement("div");
+  p.className="petal";
+  p.innerHTML="🌸";
+  p.style.left=Math.random()*100+"vw";
+  p.style.animationDuration=(3+Math.random()*5)+"s";
+  document.body.appendChild(p);
+  setTimeout(()=>p.remove(),8000);
+}
+setInterval(petal,300);
+</script>
+
+</body>
+</html>
